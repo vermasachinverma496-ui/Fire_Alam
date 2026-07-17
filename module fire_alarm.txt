@@ -1,0 +1,31 @@
+module fire_alarm(
+    input wire clk,
+    input wire reset,
+    input wire smoke_sensor,
+    output reg buzzer,
+    output reg led
+);
+
+always @(posedge clk or posedge reset)
+begin
+    if (reset)
+    begin
+        buzzer <= 1'b0;
+        led <= 1'b0;
+    end
+    else
+    begin
+        if (smoke_sensor == 1'b1)
+        begin
+            buzzer <= 1'b1;
+            led <= 1'b1;
+        end
+        else
+        begin
+            buzzer <= 1'b0;
+            led <= 1'b0;
+        end
+    end
+end
+
+endmodule
